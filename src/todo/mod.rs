@@ -20,12 +20,17 @@ pub async fn create_todo(todo: web::Json<Todos>, data: web::Data<AppState>) -> i
     // Lock the todos vector and push the new todo
     let mut todos = data.todos.lock().unwrap();
     todos.push(todo.into_inner());
+    for i in todos.iter() {
+        println!("Todo: {:?}", i);
+    }
     HttpResponse::Ok().body("Todo created successfully")
 }
 
 pub async fn get_todos(data: web::Data<AppState>) -> impl Responder {
     // Lock the todos vector and return the todos
     let todos = data.todos.lock().unwrap();
+    println!("Retrieved: {:?}", todos);
+    println!("Retrieved todos: {:?}", *todos);
     HttpResponse::Ok().json(&*todos)
 }
 

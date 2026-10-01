@@ -59,11 +59,11 @@ async fn index() -> impl Responder {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     println!("Starting server at http://localhost:8080");
-    HttpServer::new(|| {
-        App::new()
-            .app_data(web::Data::new(AppState {
-                todos: Mutex::new(Vec::new()),
-            }))
+    let app_state = web::Data::new(AppState {
+        todos: Mutex::new(Vec::new()),
+    });
+    HttpServer::new(move || {
+        App::new().app_data(app_state.clone())
             .service(index)
             .route("/signup", actix_web::web::post().to(signup_user))
             .route("/api/v1/update", actix_web::web::post().to(update_user_name))
