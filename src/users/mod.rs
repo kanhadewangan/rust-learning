@@ -30,3 +30,9 @@ pub async fn signup_user(user: web::Json<Signup>) -> impl Responder {
 }
 
 
+pub async  fn update_user_name(user: web::Json<Signup>) -> impl Responder{
+    
+    println!("hii  find your request we get back to you in few minutes , {}", user.username);
+    HttpResponse::Ok().body(format!("get info about it"))
+}
+
