@@ -969,6 +969,7 @@ dependencies = [
  "actix-web",
  "argon2",
  "dotenvy",
+ "rand 0.8.8",
  "sea-orm",
  "serde",
  "tokio",

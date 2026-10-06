@@ -13,4 +13,3 @@ Cargo.lock
 # Local environment files
 .env.*
 !.env.example
-
