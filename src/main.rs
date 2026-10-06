@@ -2,14 +2,14 @@
 use std::sync::Mutex;
 
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, web};
-
+use sea_orm::{ActiveModelTrait, ActiveValue::Set};
 
 
 // Import the users module
 mod users;
 mod todo;
 mod db;
-
+mod entities;
 // Import the signup_user function from the users module
 use users::signup_user;
 use users::update_user_name;
@@ -63,8 +63,7 @@ async fn main() -> std::io::Result<()> {
     println!("{:?}",env);
     let db = db::connect_db().await;
     println!("Connected to the database: {:?}", db);
-
-    println!("Starting server at http://localhost:8080");
+   // testing data only and changed in the prod 
     let app_state = web::Data::new(AppState {
         todos: Mutex::new(Vec::new()),
     });

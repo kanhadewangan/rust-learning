@@ -3,3 +3,14 @@
 Cargo.lock
 
 .env
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local environment files
+.env.*
+!.env.example
+
