@@ -49,6 +49,7 @@ pub async fn update_todos(
             break;
         }
     }
+    println!("Updated todos: {:?}", *todos);
     HttpResponse::Ok().body("Todo updated successfully")
 }
 
